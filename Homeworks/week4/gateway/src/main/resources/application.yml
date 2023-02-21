@@ -1,0 +1,21 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: banner-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/banners/**
+        - id: user-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/users/**, /products/**
+        - id: payment-service
+          uri: http://localhost:8084
+          predicates:
+            - Path=/payments/**
+
